@@ -1,0 +1,197 @@
+﻿@model GreenieAir.ViewModels.UserViewModel
+
+@{
+
+}
+<hr />
+
+
+    <div class="row">
+        <div class="col-md-6">
+            <span>Flight Number: </span>
+            <br />
+            <span>Departure Time: </span>
+            <br />
+            <span>Arrival Time: </span>
+            <br />
+            <span>Number of Adults: </span>
+            <br />
+            <span>Number of Children: </span>
+            <br /><br />
+            <span>Cost of adult(s): = </span>
+            <br />
+            <span>Cost of child: </span>
+            <br />
+            <span>Airport Tax: </span>
+            <br />
+            <span>Fuel Tax: </span>
+            <br />
+            <span>Total Tax: </span>
+            <br /><hr /><br />
+            <h4>Cost of one trip is </h4>
+            <br /><hr /><br />
+            <h4>Your flight from -- to --//return only </h4>
+            <span>Flight Number: </span>
+            <br />
+            <span>Departure Time: </span>
+            <br />
+            <span>Arrival Time: </span>
+            <br />
+            <span>Number of Adults: </span>
+            <br />
+            <span>Number of Children: </span>
+            <br /><br />
+            <span>Cost of adult(s): = </span>
+            <br />
+            <span>Cost of child: </span>
+            <br />
+            <span>Airport Tax: </span>
+            <br />
+            <span>Fuel Tax: </span>
+            <br />
+            <span>Total Tax: </span>
+            <br /><hr /><br />
+            <h4>Cost of return trip is </h4>
+            <br /><hr /><br />
+            <h4>Total cost of both trips is </h4>
+        </div>
+        <div class="col-md-6">
+            <h4>Adult Passenger Details</h4>
+            <div class="form-horizontal">
+                <div class="form-group">
+
+                    <div class="col-sm-3 my-1">
+                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @style = "padding-right: 15px; padding-left: 15px;", @placeholder = "First Name" } })
+                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                    </div>
+                
+                    <div class="col-sm-3 my-1">
+                        @Html.EditorFor(model => model.Adult_aAge, new { htmlAttributes = new { @class = "form-control", @style = "padding-right: 15px; padding-left: 15px;", @placeholder = "Age" } })
+                        @Html.ValidationMessageFor(model => model.Adult_aAge, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-10">
+
+                        <div class="input-icon">
+                            <i class="fa fa-mars"></i>
+                            @*@Html.EnumDropDownListFor(model => model.Sex, htmlAttributes: new { @class = "form-control placeholder-no-fix" })*@
+                            <select class="form-control placeholder-no-fix" data-val="true" data-val-required="The Sex field is required." id="adultSex" name="adultSex">
+                                <option selected="selected" value="" style="color:gray">Select Gender</option>
+                                <option value="0">Male</option>
+                                <option value="1">Female</option>
+                            </select>
+                            @Html.ValidationMessageFor(model => model.adultSex, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <h3> Child Passenger Details</h3>
+                <div class="form-horizontal">
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.childName, new { htmlAttributes = new { @class = "form-control", @style = "padding-right: 15px; padding-left: 15px;", @placeholder = "Name" } })
+                            @Html.ValidationMessageFor(model => model.childName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.child_age, new { htmlAttributes = new { @class = "form-control", @style = "padding-right: 15px; padding-left: 15px;", @placeholder = "Age" } })
+                            @Html.ValidationMessageFor(model => model.child_age, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-md-10">
+
+                            <div class="input-icon">
+                                <i class="	fa fa-mars"></i>
+                                @*@Html.EnumDropDownListFor(model => model.Sex, htmlAttributes: new { @class = "form-control placeholder-no-fix" })*@
+                                <select class="form-control placeholder-no-fix" data-val="true" data-val-required="The Sex field is required." id="childSex" name="childSex">
+                                    <option selected="selected" value="" style="color:gray">Select Gender</option>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.childSex, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4>User Contact Details</h4>
+
+                <div class="form-horizontal">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.Id)
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @style = "padding-right: 15px; padding-left: 15px;", @placeholder = "First Name" } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Last Name" } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control", @placeholder = "Phone" } })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Address" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+
+                        <div class="col-md-10">
+
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                 
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Book Flight" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+
+        </div>
+    </div>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

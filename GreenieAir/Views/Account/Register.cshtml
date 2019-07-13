@@ -1,0 +1,125 @@
+﻿@model GreenieAir.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LoginRegisterPartial.cshtml";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "login-form", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h3>Create a new account.</h3>
+    <p>
+        Enter your personal details below:
+    </p>
+
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-font"></i>
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control placeholder-no-fix", @placeholder = "First Name" })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-font"></i>
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control placeholder-no-fix", @placeholder = "Last Name" })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sex, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="	fa fa-mars"></i>
+            @*@Html.EnumDropDownListFor(model => model.Sex, htmlAttributes: new { @class = "form-control placeholder-no-fix" })*@
+            <select class="form-control placeholder-no-fix" data-val="true" data-val-required="The Sex field is required." id="Sex" name="Sex">
+                <option selected="selected" value="" style="color:gray">Select Gender</option>
+                <option value="0">Male</option>
+                <option value="1">Female</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-check"></i>
+            @Html.TextBoxFor(m => m.Address, new { @class = "form-control placeholder-no-fix", @placeholder = "Address" })
+            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="glyphicon glyphicon-phone"></i>
+            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control placeholder-no-fix", @placeholder = "Phone" })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <p>
+        Enter your account details below:
+    </p>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-envelope"></i>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control placeholder-no-fix", @placeholder = "Email" })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="input-icon">
+            <i class="fa fa-lock"></i>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control placeholder-no-fix", @autocomplete = "off", @placeholder = "Password" })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label visible-ie8 visible-ie9" })
+        <div class="controls">
+            <div class="input-icon">
+                <i class="fa fa-check"></i>
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control placeholder-no-fix", @autocomplete = "off", @placeholder = "Re-type Your Password" })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="form-group">
+        <label>
+            <input type="checkbox" name="tnc" /> I agree to the <a href="javascript:;">
+                Terms of Service
+            </a>
+            and <a href="javascript:;">
+                Privacy Policy
+            </a>
+        </label>
+        <div id="register_tnc_error">
+        </div>
+    </div>
+    <div class="form-actions">
+        <a href="~/Account/Login" id="register-back-btn" type="button" class="btn">
+            <i class="m-icon-swapleft"></i> Back
+        </a>
+        <button type="submit" id="register-submit-btn" class="btn blue pull-right">
+            Sign Up <i class="m-icon-swapright m-icon-white"></i>
+        </button>
+    </div>
+}
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
+
+

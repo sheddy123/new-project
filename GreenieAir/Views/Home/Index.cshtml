@@ -1,0 +1,1484 @@
+﻿@model GreenieAir.Models.flight_search
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_IndexPage.cshtml";
+}
+
+
+
+<script>
+    function ShowHideDiv() {
+        var chkYes = document.getElementById("chkYes");
+        var dvtext = document.getElementById("dvtext");
+        dvtext.style.display = chkYes.checked ? "block" : "none";
+    }
+
+</script>
+
+<style>
+    .single-tab-select-box h2 {
+        color: #e9f4f9;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        margin-bottom: 17px;
+    }
+
+    .travel-select-icon .form-control, .travel-check-icon .form-control {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        -o-appearance: none;
+        -ms-appearance: none;
+        appearance: none;
+        outline: 0 !important;
+        box-shadow: none;
+        border-radius: 0px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        color: #07253F;
+        
+    }
+
+    .travel-check-icon::after {
+        position: absolute;
+        content: "\f073";
+        right: 0px;
+        top: 0;
+        font-size: 18px;
+        color: #151010;
+        background: #fff;
+        font-family: "fontAwesome";
+        pointer-events: none;
+        border: 1px solid #d7d7d7;
+        border-bottom-color: rgb(215, 215, 215);
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom: transparent;
+        padding: 10px 8px;
+    }
+
+    .travel-select-icon::after {
+        position: absolute;
+        content: "\f107";
+        right: 0px;
+        top: 0;
+        font-size: 18px;
+        color: #151010;
+        background: #fff;
+        font-family: "fontAwesome";
+        pointer-events: none;
+        border: 1px solid #d7d7d7;
+        border-bottom-color: rgb(215, 215, 215);
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+        border-bottom: transparent;
+        padding: 10px;
+    }
+
+    .single-travel-boxes {
+        margin-top: -125px;
+        background: #0f1c3f;
+    }
+
+    .single-trip-circle input[type="radio"] + label {
+        color: #f6f8f9;
+        font-size: 16px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        text-transform: capitalize;
+        margin-bottom: 17px;
+        margin-left: 0px;
+    }
+
+    .about-view.travel-btn {
+        width: 180px;
+        margin-right: 15px;
+    }
+
+    .about-view {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #646e86;
+        border: 1px solid #646e86;
+        width: 200px;
+        height: 60px;
+        white-space: nowrap;
+        color: #fff;
+        font-size: 16px;
+        font-family: 'Poppins', sans-serif;
+        text-transform: uppercase;
+        border-radius: 5px;
+        box-shadow: 0 5px 20px rgba(14,15,18,.2);
+        -webkit-transition: 0.5s ease-in-out;
+        -moz-transition: 0.5s ease-in-out;
+        -ms-transition: 0.5s ease-in-out;
+        -o-transition: 0.5s ease-in-out;
+        transition: 0.5s ease-in-out;
+    }
+
+    .about-us::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(18, 21, 24, 0.4);
+    }
+
+    article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+        display: block;
+        background: rgba(22, 25, 35, 0.88);
+    }
+
+    .single-travel-boxes {
+        margin-top: -838px;
+        background: rgba(10, 9, 62, 0.5);
+        border-radius: 5px;
+        box-shadow: 0 0 20px rgba(114, 141, 161, 0.2);
+    }
+
+    .desc-tabs .nav-tabs > li > a {
+        color: #fff;
+        background: #62637d;
+        cursor: default;
+        font-size: 20px;
+        font-weight: 500;
+        font-family: 'Poppins', sans-serif;
+        border: 1px solid #646e86;
+        text-transform: capitalize;
+        padding: 17px 40px 17px 46px;
+        border: 0;
+        -webkit-transition: .5s;
+        -moz-transition: .5s;
+        -ms-transition: .5s;
+        -o-transition: .5s;
+        transition: .5s;
+    }
+</style>
+<section id="home" class="about-us">
+
+    <div class="container">
+        <div class="about-us-content">
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="single-about-us">
+                        <div class="about-us-txt">
+                            <h2>
+                                Explore the Beauty of the Beautiful World
+
+                            </h2>
+
+                        </div><!--/.about-us-txt-->
+                    </div><!--/.single-about-us-->
+                </div><!--/.col-->
+                <div class="col-sm-0">
+                    <div class="single-about-us">
+
+                    </div><!--/.single-about-us-->
+                </div><!--/.col-->
+            </div><!--/.row-->
+        </div><!--/.about-us-content-->
+    </div><!--/.container-->
+
+</section><!--/.about-us-->
+<!--about-us end -->
+<!--travel-box start-->
+<section class="travel-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("FlightDetails", "Home", FormMethod.Get))
+                {
+
+                    <div class="single-travel-boxes">
+                        <div id="desc-tabs" class="desc-tabs">
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                @*<li role="presentation" class="active">
+                                        <a href="#tours" aria-controls="tours" role="tab" data-toggle="tab">
+                                            <i class="fa fa-tree"></i>
+                                            toursdf
+                                        </a>
+                                    </li>
+
+                                    <li role="presentation">
+                                        <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">
+                                            <i class="fa fa-building"></i>
+                                            hotels
+                                        </a>
+                                    </li>*@
+
+                                <li role="presentation">
+                                    <a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">
+                                        <i class="fa fa-plane"></i>
+                                        flights
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+
+                                <div role="tabpanel" class="tab-pane active fade in" id="flights">
+                                    <div class="tab-para">
+                                        <div class="trip-circle">
+                                            <div class="single-trip-circle">
+                                                <input type="radio" id="chkYes" name="chk" onclick="ShowHideDiv()" value="round trip" />
+                                                <label for="chkYes">
+                                                    <input type="radio" id="chkYes" name="chk" onclick="ShowHideDiv()" value="round trip" />
+                                                    <span class="round-boarder">
+                                                        <span class="round-boarder1"></span>
+                                                    </span>round trip
+                                                </label>
+                                            </div><!--/.single-trip-circle-->
+                                            <div class="single-trip-circle">
+                                                <input type="radio" id="chkNo" name="chk" onclick="ShowHideDiv()" value="one way" />
+                                                <label for="chkNo">
+                                                    <input type="radio" id="chkNo" name="chk" onclick="ShowHideDiv()" value="one way" />
+                                                    <span class="round-boarder">
+                                                        <span class="round-boarder1"></span>
+                                                    </span>one way
+                                                </label>
+                                            </div><!--/.single-trip-circle-->
+                                        </div><!--/.trip-circle-->
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <div class="single-tab-select-box">
+
+                                                    <h2>from</h2>
+
+                                                    <div class="travel-select-icon">
+                                                        <select required class="form-control " name="From_City" id="fromcity">
+
+                                                            <option value="">enter your location</option><!-- /.option-->
+
+                                                            <option value="Lagos">Lagos</option><!-- /.option-->
+
+                                                            <option value="Abuja">Abuja</option><!-- /.option-->
+                                                            <option value="Kaduna">Kaduna</option><!-- /.option-->
+
+                                                        </select><!-- /.select-->
+                                                    </div><!-- /.travel-select-icon -->
+                                                </div><!--/.single-tab-select-box-->
+                                            </div><!--/.col-->
+
+                                            <div class="col-lg-2 col-md-3 col-sm-4">
+                                                <div class="single-tab-select-box">
+                                                    <h2>departure</h2>
+                                                    <div class="travel-check-icon">
+                                                        <form action="#">
+                                                            <input required type="text" name="departure" class="form-control datetime" data-toggle="datepicker">
+                                                        </form>
+                                                    </div><!-- /.travel-check-icon -->
+                                                </div><!--/.single-tab-select-box-->
+                                            </div><!--/.col-->
+
+                                            <div id="dvtext" style="display: none" class="col-lg-2 col-md-3 col-sm-4">
+                                                <div class="single-tab-select-box">
+                                                    <h2>return</h2>
+                                                    <div class="travel-check-icon">
+                                                        <form action="#">
+                                                            <input required type="text" name="return" class="form-control" data-toggle="datepicker" id="txtBox">
+                                                        </form>
+                                                    </div><!-- /.travel-check-icon -->
+                                                </div><!--/.single-tab-select-box-->
+                                            </div><!--/.col-->
+
+                                            <div class="col-lg-2 col-md-1 col-sm-4">
+                                                <div class="single-tab-select-box">
+                                                    <h2>adults</h2>
+                                                    <div class="travel-select-icon">
+                                                        <select required class="form-control " name="booking_Adults" id="booking_Adults">
+
+                                                            <option value="">--Select--</option><!-- /.option-->
+
+                                                            <option value="1">1</option><!-- /.option-->
+
+                                                            <option value="2">2</option><!-- /.option-->
+                                                            <option value="3">3</option><!-- /.option-->
+
+                                                        </select><!-- /.select-->
+                                                    </div><!-- /.travel-select-icon -->
+                                                </div><!--/.single-tab-select-box-->
+                                            </div><!--/.col-->
+
+                                            <div class="col-lg-2 col-md-1 col-sm-4">
+                                                <div class="single-tab-select-box">
+                                                    <h2>Child</h2>
+                                                    <div class="travel-select-icon">
+                                                        <select class="form-control " id="booking_Child" name="booking_Child">
+
+                                                            <option value="">-- Select --</option><!-- /.option-->
+
+                                                            <option value="1">1</option><!-- /.option-->
+
+                                                            <option value="2">2</option><!-- /.option-->
+                                                            <option value="3">3</option><!-- /.option-->
+                                                            <option value="4">4</option><!-- /.option-->
+
+                                                        </select><!-- /.select-->
+                                                    </div><!-- /.travel-select-icon -->
+                                                </div><!--/.single-tab-select-box-->
+                                            </div><!--/.col-->
+
+                                        </div><!--/.row-->
+
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                                <div class="single-tab-select-box">
+
+                                                    <h2>to</h2>
+
+                                                    <div class="travel-select-icon">
+                                                        <select required class="form-control " id="tocity" name="To_City">
+
+                                                            <option value="">enter your destination location</option><!-- /.option-->
+
+                                                            <option value="Abuja">Abuja</option><!-- /.option-->
+
+                                                            <option value="mosko">mosko</option><!-- /.option-->
+                                                            <option value="cairo">cairo</option><!-- /.option-->
+
+                                                        </select><!-- /.select-->
+                                                    </div><!-- /.travel-select-icon -->
+
+                                                </div><!--/.single-tab-select-box-->
+                                            </div><!--/.col-->
+                                            <div class="col-lg-3 col-md-3 col-sm-4">
+                                                <div class="single-tab-select-box">
+
+                                                    <h2>class</h2>
+                                                    <div class="travel-select-icon">
+                                                        <select required class="form-control ">
+
+                                                            <option value="">enter class</option><!-- /.option-->
+
+                                                            <option value="A">A</option><!-- /.option-->
+
+                                                            <option value="B">B</option><!-- /.option-->
+                                                            <option value="C">C</option><!-- /.option-->
+
+                                                        </select><!-- /.select-->
+                                                    </div><!-- /.travel-select-icon -->
+                                                </div><!--/.single-tab-select-box-->
+                                            </div><!--/.col-->
+                                            <div class="clo-sm-5">
+                                                <div class="about-btn pull-right">
+                                                    <button class="about-view travel-btn">
+                                                        search
+                                                    </button><!--/.travel-btn-->
+                                                </div><!--/.about-btn-->
+                                            </div><!--/.col-->
+                                        </div><!--/.row-->
+                                    </div>
+
+                                    @if (ViewBag.Message == null || ViewBag.Message.Count == 0)
+                                    {
+                                        if (ViewBag.Mess != null)
+                                        {
+                                            <h3><span style="color:white">@ViewBag.Mess</span></h3>
+                                        }
+                                        if (ViewBag.Message == null && ViewBag.Flights == null)
+                                        {
+
+                                        }
+                                        else if (ViewBag.Message == null)
+                                        {
+                                            <h3><span style="color:white">@ViewBag.NoFlights</span></h3>
+                                        }
+                                        else if (ViewBag.Message.Count == 0)
+                                        {
+                                            <h3><span style="color:white">@ViewBag.NoFlights</span></h3>
+                                        }
+                                        else if (ViewBag.Message.Count > 0)
+                                        {
+                                            using (Html.BeginForm("PassengerBook", "Home", FormMethod.Get))
+                                            {
+
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <span style="color:white">@Html.DisplayNameFor(model => model.FlightNo)</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white"> @Html.DisplayNameFor(model => model.From_City)</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white">  @Html.DisplayNameFor(model => model.To_City)</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white">  Departure Time</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white"> Arrival Time</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white">  @Html.DisplayNameFor(model => model.SeatsLeft)</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white">  @Html.DisplayNameFor(model => model.e_price)</span>
+                                                        </th>
+                                                        @*<th>
+                                <span style="color:white">   @Html.DisplayNameFor(model => model.b_price)</span>
+                            </th>*@
+
+
+                                                    </tr>
+
+                                                    @foreach (var item in @ViewBag.Message)
+                                                    {
+                                                        @Html.AntiForgeryToken()
+                                                        <tr>
+                                                            <td>
+
+                                                                <input required type="radio" name="selectedFlight" value="@item.FlightNo" />
+                                                                <span style="color:white">@item.FlightNo</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.From_City</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.To_City</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.DepartureDate.ToString("hh:mm tt")</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.ArrivalDate.ToString("hh:mm tt")</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.SeatsLeft</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.e_price</span>
+                                                            </td>
+                                                            @*<td>
+                                    <span style="color:white">@item.b_price</span>
+                                </td>*@
+
+                                                        </tr>
+                                                    }
+
+                                                </table>
+                                                <button type="submit" class="book-btn" style="margin-left: 50%">
+                                                    book now
+                                                </button>
+
+                                            }
+                                        }
+                                    }
+                                    @if (ViewBag.Flights == null || ViewBag.Flights.Count > 0)
+                                    {
+                                        if (ViewBag.Message == null && ViewBag.Flights == null)
+                                        {
+
+                                        }
+                                        else if (ViewBag.Flights == null)
+                                        {
+                                            <h3><span style="color:white">@ViewBag.NoFlights</span></h3>
+                                        }
+                                        else if (ViewBag.Flights.Count < 0)
+                                        {
+                                            <h3><span style="color:white">@ViewBag.NoFlights</span></h3>
+                                        }
+                                        else
+                                        {
+                                            using (Html.BeginForm("PassengerBook", "Home", FormMethod.Get))
+                                            {
+                                                @Html.AntiForgeryToken()
+                                                <table class="table">
+                                                    <tr>
+                                                        <th>
+                                                            <span style="color:white">@Html.DisplayNameFor(model => model.FlightNo)</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white"> @Html.DisplayNameFor(model => model.From_City)</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white">  @Html.DisplayNameFor(model => model.To_City)</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white">  Departure Time</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white"> Arrival Time</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white">  @Html.DisplayNameFor(model => model.SeatsLeft)</span>
+                                                        </th>
+                                                        <th>
+                                                            <span style="color:white">  @Html.DisplayNameFor(model => model.e_price)</span>
+                                                        </th>
+                                                        @*<th>
+                                <span style="color:white">   @Html.DisplayNameFor(model => model.b_price)</span>
+                            </th>*@
+
+
+                                                    </tr>
+
+                                                    @foreach (var item in @ViewBag.Flights)
+                                                    {
+
+                                                        <tr>
+                                                            <td>
+                                                                <input required type="radio" name="selectedFlight" value="@item.FlightNo" />
+                                                                <span style="color:white">@item.FlightNo</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.From_City</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.To_City</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.DepartureDate.ToString("hh:mm tt")</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.ArrivalDate.ToString("hh:mm tt")</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.SeatsLeft</span>
+                                                            </td>
+                                                            <td>
+                                                                <span style="color:white">@item.e_price</span>
+                                                            </td>
+                                                            @*<td>
+                                    <span style="color:white">@item.b_price</span>
+                                </td>*@
+
+                                                        </tr>
+                                                    }
+
+                                                </table>
+                                                <button type="submit" class="book-btn" style="margin-left: 50%">
+                                                    book now
+                                                </button>
+
+                                            }
+                                        }
+                                    }
+
+                                </div><!--/.tabpannel-->
+
+                            </div><!--/.tab content-->
+                        </div><!--/.desc-tabs-->
+                    </div><!--/.single-travel-box-->
+                }
+            </div><!--/.col-->
+        </div><!--/.row-->
+    </div><!--/.container-->
+
+</section><!--/.travel-box-->
+<!--travel-box end-->
+<!--service start-->
+<section id="service" class="service">
+    <div class="container">
+
+        <div class="service-counter text-center">
+
+            <div class="col-md-4 col-sm-4">
+                <div class="single-service-box">
+                    <div class="service-img">
+                        <img src="~/Content/assets/images/service/s1.png" alt="service-icon" />
+                    </div><!--/.service-img-->
+                    <div class="service-content">
+                        <h2>
+                            <a href="#">
+                                Choose amazing tour packages
+                            </a>
+                        </h2>
+                        <p>Must use our tour Planner for breathtaking tour packages!</p>
+                    </div><!--/.service-content-->
+                </div><!--/.single-service-box-->
+            </div><!--/.col-->
+
+            <div class="col-md-4 col-sm-4">
+                <div class="single-service-box">
+                    <div class="service-img">
+                        <img src="~/Content/assets/images/service/s2.png" alt="service-icon" />
+                    </div><!--/.service-img-->
+                    <div class="service-content">
+                        <h2>
+                            <a href="#">
+                                book top class hotel
+                            </a>
+                        </h2>
+                        <p>This amazing site helps you book the best hotels all around the world!</p>
+                    </div><!--/.service-content-->
+                </div><!--/.single-service-box-->
+            </div><!--/.col-->
+
+            <div class="col-md-4 col-sm-4">
+                <div class="single-service-box">
+                    <div class="statistics-img">
+                        <img src="~/Content/assets/images/service/s3.png" alt="service-icon" />
+                    </div><!--/.service-img-->
+                    <div class="service-content">
+
+                        <h2>
+                            <a href="#">
+                                online flight booking
+                            </a>
+                        </h2>
+                        <p>Book your flight instantly using GreenieAirlines!</p>
+                    </div><!--/.service-content-->
+                </div><!--/.single-service-box-->
+            </div><!--/.col-->
+
+        </div><!--/.statistics-counter-->
+    </div><!--/.container-->
+
+</section><!--/.service-->
+<!--service end-->
+<!--galley start-->
+<section id="gallery" class="gallery">
+    <div class="container">
+        <div class="gallery-details">
+            <div class="gallary-header text-center">
+                <h2>
+                    top destination
+                </h2>
+                <p>
+                    Where do you wanna go? How much you wanna explore?
+                </p>
+            </div><!--/.gallery-header-->
+            <div class="gallery-box">
+                <div class="gallery-content">
+                    <div class="filtr-container">
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="filtr-item">
+                                    <img src="~/Content/assets/images/gallary/g1.jpg" alt="portfolio image" />
+                                    <div class="item-title">
+                                        <a href="#">
+                                            china
+                                        </a>
+                                        <p><span>20 tours</span><span>15 places</span></p>
+                                    </div><!-- /.item-title -->
+                                </div><!-- /.filtr-item -->
+                            </div><!-- /.col -->
+
+                            <div class="col-md-6">
+                                <div class="filtr-item">
+                                    <img src="~/Content/assets/images/gallary/g2.jpg" alt="portfolio image" />
+                                    <div class="item-title">
+                                        <a href="#">
+                                            venuzuala
+                                        </a>
+                                        <p><span>12 tours</span><span>9 places</span></p>
+                                    </div> <!-- /.item-title-->
+                                </div><!-- /.filtr-item -->
+                            </div><!-- /.col -->
+
+                            <div class="col-md-4">
+                                <div class="filtr-item">
+                                    <img src="~/Content/assets/images/gallary/g3.jpg" alt="portfolio image" />
+                                    <div class="item-title">
+                                        <a href="#">
+                                            brazil
+                                        </a>
+                                        <p><span>25 tours</span><span>10 places</span></p>
+                                    </div><!-- /.item-title -->
+                                </div><!-- /.filtr-item -->
+                            </div><!-- /.col -->
+
+                            <div class="col-md-4">
+                                <div class="filtr-item">
+                                    <img src="~/Content/assets/images/gallary/g4.jpg" alt="portfolio image" />
+                                    <div class="item-title">
+                                        <a href="#">
+                                            australia
+                                        </a>
+                                        <p><span>18 tours</span><span>9 places</span></p>
+                                    </div> <!-- /.item-title-->
+                                </div><!-- /.filtr-item -->
+                            </div><!-- /.col -->
+
+                            <div class="col-md-4">
+                                <div class="filtr-item">
+                                    <img src="~/Content/assets/images/gallary/g5.jpg" alt="portfolio image" />
+                                    <div class="item-title">
+                                        <a href="#">
+                                            netharlands
+                                        </a>
+                                        <p><span>14 tours</span><span>12 places</span></p>
+                                    </div> <!-- /.item-title-->
+                                </div><!-- /.filtr-item -->
+                            </div><!-- /.col -->
+
+                            <div class="col-md-8">
+                                <div class="filtr-item">
+                                    <img src="~/Content/assets/images/gallary/g6.jpg" alt="portfolio image" />
+                                    <div class="item-title">
+                                        <a href="#">
+                                            turkey
+                                        </a>
+                                        <p><span>14 tours</span><span>6 places</span></p>
+                                    </div> <!-- /.item-title-->
+                                </div><!-- /.filtr-item -->
+                            </div><!-- /.col -->
+
+                        </div><!-- /.row -->
+
+                    </div><!-- /.filtr-container-->
+                </div><!-- /.gallery-content -->
+            </div><!--/.galley-box-->
+        </div><!--/.gallery-details-->
+    </div><!--/.container-->
+
+</section><!--/.gallery-->
+<!--gallery end-->
+<!--discount-offer start-->
+<section class="discount-offer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="dicount-offer-content text-center">
+                    <h2>Join with us within 7 March, 2019 and get upto 40% Discount</h2>
+                    <div class="campaign-timer">
+                        <div id="timer">
+                            <div class="time time-after" id="days">
+                                <span></span>
+                            </div><!--/.time-->
+                            <div class="time time-after" id="hours">
+
+                            </div><!--/.time-->
+                            <div class="time time-after" id="minutes">
+
+                            </div><!--/.time-->
+                            <div class="time" id="seconds">
+
+                            </div><!--/.time-->
+                        </div><!--/.timer-->
+                    </div><!--/.campaign-timer-->
+                    <div class="about-btn">
+                        <button class="about-view discount-offer-btn">
+                            join now
+                        </button>
+                    </div><!--/.about-btn-->
+
+
+                </div><!-- /.dicount-offer-content-->
+            </div><!-- /.col-->
+        </div><!-- /.row-->
+    </div><!-- /.container-->
+
+</section><!-- /.discount-offer-->
+<!--discount-offer end-->
+<!--packages start-->
+<section id="pack" class="packages">
+    <div class="container">
+        <div class="gallary-header text-center">
+            <h2>
+                special packages
+            </h2>
+            <p>
+                Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.
+            </p>
+        </div><!--/.gallery-header-->
+        <div class="packages-content">
+            <div class="row">
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-package-item">
+                        <img src="~/Content/assets/images/packages/p1.jpg" alt="package-place">
+                        <div class="single-package-item-txt">
+                            <h3>italy <span class="pull-right">$499</span></h3>
+                            <div class="packages-para">
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i> 3 Days 2 nights
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                </p>
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  transportation
+                                    </span>
+                                    <i class="fa fa-angle-right"></i> food facilities
+                                </p>
+                            </div><!--/.packages-para-->
+                            <div class="packages-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span>254 reviews</span>
+                                </p>
+                            </div><!--/.packages-review-->
+                            <div class="about-btn">
+                                <button class="about-view packages-btn">
+                                    book now
+                                </button>
+                            </div><!--/.about-btn-->
+                        </div><!--/.single-package-item-txt-->
+                    </div><!--/.single-package-item-->
+
+                </div><!--/.col-->
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-package-item">
+                        <img src="~/Content/assets/images/packages/p2.jpg" alt="package-place">
+                        <div class="single-package-item-txt">
+                            <h3>england <span class="pull-right">$1499</span></h3>
+                            <div class="packages-para">
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i> 6 Days 7 nights
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                </p>
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  transportation
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  Free food
+                                </p>
+                            </div><!--/.packages-para-->
+                            <div class="packages-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span>344 reviews</span>
+                                </p>
+                            </div><!--/.packages-review-->
+                            <div class="about-btn">
+                                <button class="about-view packages-btn">
+                                    book now
+                                </button>
+                            </div><!--/.about-btn-->
+                        </div><!--/.single-package-item-txt-->
+                    </div><!--/.single-package-item-->
+
+                </div><!--/.col-->
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-package-item">
+                        <img src="~/Content/assets/images/packages/p3.jpg" alt="package-place">
+                        <div class="single-package-item-txt">
+                            <h3>france <span class="pull-right">$1199</span></h3>
+                            <div class="packages-para">
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i> 5 Days 6 nights
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                </p>
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  transportation
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  food facilities
+                                </p>
+                            </div><!--/.packages-para-->
+                            <div class="packages-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span>544 reviews</span>
+                                </p>
+                            </div><!--/.packages-review-->
+                            <div class="about-btn">
+                                <button class="about-view packages-btn">
+                                    book now
+                                </button>
+                            </div><!--/.about-btn-->
+                        </div><!--/.single-package-item-txt-->
+                    </div><!--/.single-package-item-->
+
+                </div><!--/.col-->
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-package-item">
+                        <img src="~/Content/assets/images/packages/p4.jpg" alt="package-place">
+                        <div class="single-package-item-txt">
+                            <h3>india <span class="pull-right">$799</span></h3>
+                            <div class="packages-para">
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i> 4 Days 5 nights
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                </p>
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  transportation
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  food facilities
+                                </p>
+                            </div><!--/.packages-para-->
+                            <div class="packages-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span>625 reviews</span>
+                                </p>
+                            </div><!--/.packages-review-->
+                            <div class="about-btn">
+                                <button class="about-view packages-btn">
+                                    book now
+                                </button>
+                            </div><!--/.about-btn-->
+                        </div><!--/.single-package-item-txt-->
+                    </div><!--/.single-package-item-->
+
+                </div><!--/.col-->
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-package-item">
+                        <img src="~/Content/assets/images/packages/p5.jpg" alt="package-place">
+                        <div class="single-package-item-txt">
+                            <h3>spain <span class="pull-right">$999</span></h3>
+                            <div class="packages-para">
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i> 4 Days 4 nights
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                </p>
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  transportation
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  food facilities
+                                </p>
+                            </div><!--/.packages-para-->
+                            <div class="packages-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span>379 reviews</span>
+                                </p>
+                            </div><!--/.packages-review-->
+                            <div class="about-btn">
+                                <button class="about-view packages-btn">
+                                    book now
+                                </button>
+                            </div><!--/.about-btn-->
+                        </div><!--/.single-package-item-txt-->
+                    </div><!--/.single-package-item-->
+
+                </div><!--/.col-->
+
+                <div class="col-md-4 col-sm-6">
+                    <div class="single-package-item">
+                        <img src="~/Content/assets/images/packages/p6.jpg" alt="package-place">
+                        <div class="single-package-item-txt">
+                            <h3>thailand <span class="pull-right">$799</span></h3>
+                            <div class="packages-para">
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i> 5 Days 6 nights
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  5 star accomodation
+                                </p>
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  transportation
+                                    </span>
+                                    <i class="fa fa-angle-right"></i>  food facilities
+                                </p>
+                            </div><!--/.packages-para-->
+                            <div class="packages-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span>447 reviews</span>
+                                </p>
+                            </div><!--/.packages-review-->
+                            <div class="about-btn">
+                                <button class="about-view packages-btn">
+                                    book now
+                                </button>
+                            </div><!--/.about-btn-->
+                        </div><!--/.single-package-item-txt-->
+                    </div><!--/.single-package-item-->
+
+                </div><!--/.col-->
+
+            </div><!--/.row-->
+        </div><!--/.packages-content-->
+    </div><!--/.container-->
+
+</section><!--/.packages-->
+<!--packages end-->
+<!-- testemonial Start -->
+<section class="testemonial">
+    <div class="container">
+
+        <div class="gallary-header text-center">
+            <h2>
+                clients reviews
+            </h2>
+            <p>
+                Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.
+            </p>
+
+        </div><!--/.gallery-header-->
+
+        <div class="owl-carousel owl-theme" id="testemonial-carousel">
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial1.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial2.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial1.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial1.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial2.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial1.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial1.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial2.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+            <div class="home1-testm item">
+                <div class="home1-testm-single text-center">
+                    <div class="home1-testm-img">
+                        <img src="~/Content/assets/images/client/testimonial1.jpg" alt="img" />
+                    </div><!--/.home1-testm-img-->
+                    <div class="home1-testm-txt">
+                        <span class="icon section-icon">
+                            <i class="fa fa-quote-left" aria-hidden="true"></i>
+                        </span>
+                        <p>
+                            Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam.
+                        </p>
+                        <h3>
+                            <a href="#">
+                                kevin watson
+                            </a>
+                        </h3>
+                        <h4>london, england</h4>
+                    </div><!--/.home1-testm-txt-->
+                </div><!--/.home1-testm-single-->
+
+            </div><!--/.item-->
+
+        </div><!--/.testemonial-carousel-->
+    </div><!--/.container-->
+
+</section><!--/.testimonial-->
+<!-- testemonial End -->
+<!--special-offer start-->
+<section id="spo" class="special-offer">
+    <div class="container">
+        <div class="special-offer-content">
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="single-special-offer">
+                        <div class="single-special-offer-txt">
+                            <h2>thiland</h2>
+                            <div class="packages-review special-offer-review">
+                                <p>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <span>2544 review</span>
+                                </p>
+                            </div><!--/.packages-review-->
+                            <div class="packages-para special-offer-para">
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i> 5 Days 6 nights
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i> 2 person
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  5 star accomodation
+                                    </span>
+                                </p>
+                                <p>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  transportation
+                                    </span>
+                                    <span>
+                                        <i class="fa fa-angle-right"></i>  food facilities
+                                    </span>
+                                </p>
+                                <p class="offer-para">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tem ut labore et dolore magna  aliqua. Ut enim ad minim veniam, quis nostrud exercitation una <br> ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                                </p>
+                            </div><!--/.packages-para-->
+                            <div class="offer-btn-group">
+                                <div class="about-btn">
+                                    <button class="about-view packages-btn offfer-btn">
+                                        make tour
+                                    </button>
+                                </div><!--/.about-btn-->
+                                <div class="about-btn">
+                                    <button class="about-view packages-btn">
+                                        book now
+                                    </button>
+                                </div><!--/.about-btn-->
+                            </div><!--/.offer-btn-group-->
+                        </div><!--/.single-special-offer-txt-->
+                    </div><!--/.single-special-offer-->
+                </div><!--/.col-->
+                <div class="col-sm-4">
+                    <div class="single-special-offer">
+                        <div class="single-special-offer-bg">
+                            <img src="~/Content/assets/images/offer/offer-shape.png" alt="offer-shape">
+                        </div><!--/.single-special-offer-bg-->
+                        <div class="single-special-shape-txt">
+                            <h3>special offer</h3>
+                            <h4><span>40%</span><br>off</h4>
+                            <p><span>$999</span><br>reguler $ 1450</p>
+                        </div><!--/.single-special-shape-txt-->
+                    </div><!--/.single-special-offer-->
+                </div><!--/.col-->
+            </div><!--/.row-->
+        </div><!--/.special-offer-content-->
+    </div><!--/.container-->
+
+</section><!--/.special-offer end-->
+<!--special-offer end-->
+<!--blog start-->
+<section id="blog" class="blog">
+    <div class="container">
+        <div class="blog-details">
+            <div class="gallary-header text-center">
+                <h2>
+                    latest news
+                </h2>
+                <p>
+                    Travel News from all over the world
+                </p>
+            </div><!--/.gallery-header-->
+            <div class="blog-content">
+                <div class="row">
+
+                    <div class="col-sm-4 col-md-4">
+                        <div class="thumbnail">
+                            <h2>trending news <span>15 november 2017</span></h2>
+                            <div class="thumbnail-img">
+                                <img src="~/Content/assets/images/blog/b1.jpg" alt="blog-img">
+                                <div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
+
+                            </div><!--/.thumbnail-img-->
+
+                            <div class="caption">
+                                <div class="blog-txt">
+                                    <h3>
+                                        <a href="#">
+                                            Discover on beautiful weather, Fantastic foods and historical place in Prag
+                                        </a>
+                                    </h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                    </p>
+                                    <a href="#">Read More</a>
+                                </div><!--/.blog-txt-->
+                            </div><!--/.caption-->
+                        </div><!--/.thumbnail-->
+
+                    </div><!--/.col-->
+
+                    <div class="col-sm-4 col-md-4">
+                        <div class="thumbnail">
+                            <h2>trending news <span>15 november 2017</span></h2>
+                            <div class="thumbnail-img">
+                                <img src="~/Content/assets/images/blog/b2.jpg" alt="blog-img">
+                                <div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
+
+                            </div><!--/.thumbnail-img-->
+                            <div class="caption">
+                                <div class="blog-txt">
+                                    <h3>
+                                        <a href="#">
+                                            Discover on beautiful weather, Fantastic foods and historical place in india
+                                        </a>
+                                    </h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                    </p>
+                                    <a href="#">Read More</a>
+                                </div><!--/.blog-txt-->
+                            </div><!--/.caption-->
+                        </div><!--/.thumbnail-->
+
+                    </div><!--/.col-->
+
+                    <div class="col-sm-4 col-md-4">
+                        <div class="thumbnail">
+                            <h2>trending news <span>15 november 2017</span></h2>
+                            <div class="thumbnail-img">
+                                <img src="~/Content/assets/images/blog/b3.jpg" alt="blog-img">
+                                <div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
+
+                            </div><!--/.thumbnail-img-->
+                            <div class="caption">
+                                <div class="blog-txt">
+                                    <h3><a href="#">10 Most Natural place to Discover</a></h3>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, contur adip elit, sed do mod incid ut labore et dolore magna aliqua. Ut enim ad minim veniam
+                                    </p>
+                                    <a href="#">Read More</a>
+                                </div><!--/.blog-txt-->
+                            </div><!--/.caption-->
+                        </div><!--/.thumbnail-->
+
+                    </div><!--/.col-->
+
+                </div><!--/.row-->
+            </div><!--/.blog-content-->
+        </div><!--/.blog-details-->
+    </div><!--/.container-->
+
+</section><!--/.blog-->
+<!--blog end-->
+<!--subscribe start-->
+<section id="subs" class="subscribe">
+    <div class="container">
+        <div class="subscribe-title text-center">
+            <h2>
+                Join our Subscribers List to Get Regular Update
+            </h2>
+            <p>
+                Subscribe Now. We will send you Best offer for your Trip
+            </p>
+        </div>
+        <form>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="custom-input-group">
+                        <input type="email" class="form-control" placeholder="Enter your Email Here">
+                        <button class="appsLand-btn subscribe-btn">Subscribe</button>
+                        <div class="clearfix"></div>
+                        <i class="fa fa-envelope"></i>
+                    </div>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</section>
+<!--subscribe end-->
+@*@{
+        ViewBag.Title = "Home Page";
+    }
+
+    <div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@

@@ -1,0 +1,99 @@
+﻿@model IEnumerable<GreenieAir.Models.flight_search>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.States.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FlightNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.From_City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.To_City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartureDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivalDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepartureTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeatsLeft)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.e_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.b_price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Passenger_DetailsID)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.States.StateName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FlightNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.From_City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.To_City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartureDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArrivalDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepartureTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArrivalTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeatsLeft)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.e_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.b_price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Passenger_DetailsID)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

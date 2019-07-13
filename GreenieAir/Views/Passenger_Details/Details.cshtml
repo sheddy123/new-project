@@ -1,0 +1,66 @@
+﻿@model GreenieAir.Models.Passenger_Details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Passenger_Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UsersId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsersId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassengerDepartureDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassengerDepartureDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassengerArrivalDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassengerArrivalDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PassengerStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PassengerStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger_Class)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Passenger_Class)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Passenger_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Passenger_Type)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

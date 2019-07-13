@@ -1,0 +1,74 @@
+﻿@model GreenieAir.Models.booking_details
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>booking_details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Card_Details.CardName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Card_Details.CardName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.flight_Search.FlightNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.flight_Search.FlightNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UsersId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsersId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.booking_Child)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.booking_Child)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.booking_Adults)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.booking_Adults)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.booking_total)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.booking_total)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.booking_status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.booking_status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
